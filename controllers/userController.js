@@ -1,14 +1,14 @@
 const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
-const randomstring = require('randomstring')
+// const randomstring = require('randomstring')
 
-const randomString = randomstring.generate({
-    length: 40,
-    charset: 'alphabetic'
-})
+// const randomString = randomstring.generate({
+//     length: 40,
+//     charset: 'alphabetic'
+// })
 
 const createToken = (_id) => {
-    return jwt.sign({ _id }, randomString, { expiresIn: '3d' })
+    return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' })
 }
 
 //login user
@@ -46,5 +46,5 @@ const signupUser = async(req, res) => {
 
 module.exports = {
     signupUser,
-    loginUser
+    loginUser,
 }
